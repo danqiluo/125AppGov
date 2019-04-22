@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/Input"
+        android:layout_width="257dp"
+        android:layout_height="99dp"
+        android:text="Look up your representatives"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="71dp" />
+
+    <Button
+        android:id="@+id/Get_Location"
+        android:layout_width="191dp"
+        android:layout_height="62dp"
+        android:text="Get Location"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <EditText
+        android:id="@+id/textView3"
+        android:layout_width="222dp"
+        android:layout_height="57dp"
+        android:text="Type Your Address"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="254dp" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        tools:layout_editor_absoluteX="273dp"
+        tools:layout_editor_absoluteY="263dp" />
+</android.support.constraint.ConstraintLayout>

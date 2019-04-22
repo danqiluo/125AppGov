@@ -6,35 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/lookup_govern"
-        android:layout_width="228dp"
-        android:layout_height="58dp"
-        android:text="Look Up Your Representatives"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="67dp" />
-
-    <EditText
-        android:id="@+id/textView2"
-        android:layout_width="211dp"
-        android:layout_height="52dp"
-        android:text="Insert_Address"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="125dp" />
-
-    <Button
-        android:id="@+id/search_loca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Location"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="234dp" />
-
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="submit"
-        tools:layout_editor_absoluteX="297dp"
-        tools:layout_editor_absoluteY="125dp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
 </android.support.constraint.ConstraintLayout>
+
