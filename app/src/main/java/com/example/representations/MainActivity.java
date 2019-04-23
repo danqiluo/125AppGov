@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,18 +31,31 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         PeopleList.add(
                 new Representatives(
-                        "John",
+                        "John Saltman",
                         "something@gmail.com",
                         "2178888888",
+                        "Treasurer",
+                        'd',
                         R.drawable.macbook));
 
         PeopleList.add(
                 new Representatives(
-                        "Sarah",
+                        "Sarah Pepper",
                         "somethingthig@gmail.com",
                         "2178855588",
+                        "Senator",
+                        'r',
                         R.drawable.surface));
         adapter = new RepreAdapter(PeopleList, this);
+
+        /**
+         * this is work in progress code.
+        for (Representatives rep: PeopleList) {
+            recyclerView.addOnItemTouchListener();
+            setContentView(R.layout.rep_profile);
+            ((ImageView) findViewById(R.id.propic)).setImageDrawable(rep.getImage());
+        }
+         **/
 
         recyclerView.setAdapter(adapter);
 

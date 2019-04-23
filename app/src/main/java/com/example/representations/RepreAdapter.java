@@ -31,10 +31,16 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Representatives repre = listRepre.get(i);
+        viewHolder.title.setText(repre.getTitle());
         viewHolder.name.setText(repre.getName());
         viewHolder.email.setText(repre.getEmail());
         viewHolder.phoneNumber.setText(repre.getPhoneNumber());
         viewHolder.photo.setImageDrawable(context.getResources().getDrawable(repre.getImage()));
+        if (repre.getParty() == 'd') {
+            viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.democrat));
+        } else if (repre.getParty() == 'r') {
+            viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.republican));
+        }
     }
 
     @Override
@@ -47,8 +53,10 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         public TextView email;
         public TextView phoneNumber;
         public ImageView photo;
+        public TextView title;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            title = (TextView) itemView.findViewById(R.id.title);
             name = (TextView) itemView.findViewById(R.id.people_name);
             email = (TextView) itemView.findViewById(R.id.people_email);
             phoneNumber = (TextView) itemView.findViewById(R.id.people_phonenumber);
