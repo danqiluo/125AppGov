@@ -12,10 +12,10 @@ import android.widget.TextView;
 import java.util.List;
 
 public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> {
-    private List<Representatives> listRepre;
+    private List<Official> listRepre;
     private Context context;
 
-    public RepreAdapter(List<Representatives> listRepre, Context context) {
+    public RepreAdapter(List<Official> listRepre, Context context) {
         this.listRepre = listRepre;
         this.context = context;
     }
@@ -30,15 +30,15 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Representatives repre = listRepre.get(i);
+        Official repre = listRepre.get(i);
         viewHolder.title.setText(repre.getTitle());
         viewHolder.name.setText(repre.getName());
         viewHolder.email.setText(repre.getEmail());
         viewHolder.phoneNumber.setText(repre.getPhoneNumber());
         viewHolder.photo.setImageDrawable(context.getResources().getDrawable(repre.getImage()));
-        if (repre.getParty() == 'd') {
+        if (repre.getParty().equals("d")) {
             viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.democrat));
-        } else if (repre.getParty() == 'r') {
+        } else if (repre.getParty().equals("r")) {
             viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.republican));
         }
     }

@@ -1,13 +1,9 @@
 package com.example.representations;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RepreAdapter adapter;
 
-    List<Representatives> PeopleList;
+    List<Official> PeopleList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,21 +26,21 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         PeopleList.add(
-                new Representatives(
+                new Official(
                         "John Saltman",
                         "something@gmail.com",
                         "2178888888",
                         "Treasurer",
-                        'd',
+                        "d",
                         R.drawable.macbook));
 
         PeopleList.add(
-                new Representatives(
+                new Official(
                         "Sarah Pepper",
                         "somethingthig@gmail.com",
                         "2178855588",
                         "Senator",
-                        'r',
+                        "r",
                         R.drawable.surface));
         adapter = new RepreAdapter(PeopleList, this);
 
