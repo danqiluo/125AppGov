@@ -1,6 +1,7 @@
 package com.example.representations;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Official repre = listRepre.get(i);
         viewHolder.title.setText(repre.getTitle());
         viewHolder.name.setText(repre.getName());
@@ -41,6 +42,14 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         } else if (repre.getParty().equals("r")) {
             viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.republican));
         }
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(context, RepProfile.class);
+                profile.putExtra("official", listRepre.get(i));
+                context.startActivity(profile);
+            }
+        });
     }
 
     @Override

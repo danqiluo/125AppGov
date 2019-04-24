@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rep_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,7 +15,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/info"
         android:layout_width="376dp"
         android:layout_height="85dp"
         android:gravity="center"
@@ -24,7 +24,7 @@
         tools:layout_editor_absoluteY="323dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/email_button"
         android:layout_width="409dp"
         android:layout_height="147dp"
         android:background="@color/republican"
@@ -33,7 +33,7 @@
         tools:layout_editor_absoluteY="437dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/phone_button"
         android:layout_width="409dp"
         android:layout_height="147dp"
         android:background="@color/democrat"
