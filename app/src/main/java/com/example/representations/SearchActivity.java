@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 //import com.android.volley.RequestQueue;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +24,19 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_repre);
-        configureNextButton();
-        
-    }
-    private void configureNextButton() {
         Button next = (Button) findViewById(R.id.Get_Location);
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(SearchActivity.this, MainActivity.class);
-                startActivity(myIntent);
+                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+
+
     }
+
 }
 

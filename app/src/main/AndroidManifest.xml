@@ -18,6 +18,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/Your_API_KEY">
         </meta-data>
+
         <activity android:name=".SearchActivity">
             <intent-filter>
                 <intent-filter>
