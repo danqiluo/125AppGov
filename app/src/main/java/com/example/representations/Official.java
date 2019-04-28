@@ -9,15 +9,17 @@ public class Official implements Parcelable {
     private String phoneNumber;
     private String party;
     private String title;
-    private int image;
+    private String level;
+    private String imageURL;
 
-    public Official(String name, String email, String phoneNumber, String title, String party, int image) {
+    public Official(String name, String email, String phoneNumber, String title, String party, String level, String url) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.title = title;
         this.party = party;
-        this.image = image;
+        this.level = level;
+        this.imageURL = url;
     }
 
     private Official(Parcel in) {
@@ -26,7 +28,7 @@ public class Official implements Parcelable {
         this.phoneNumber = in.readString();
         this.title = in.readString();
         this.party = in.readString();
-        this.image = in.readInt();
+        this.level = in.readString();
     }
 
     public static final Parcelable.Creator<Official> CREATOR = new Parcelable.Creator<Official>(){
@@ -52,7 +54,8 @@ public class Official implements Parcelable {
         dest.writeString(phoneNumber);
         dest.writeString(title);
         dest.writeString(party);
-        dest.writeInt(image);
+        dest.writeString(level);
+        dest.writeString(imageURL);
     }
 
     public String getName() {
@@ -67,8 +70,8 @@ public class Official implements Parcelable {
         return phoneNumber;
     }
 
-    public int getImage() {
-        return image;
+    public String getImageURL() {
+        return imageURL;
     }
 
     public String getParty() { return party; }

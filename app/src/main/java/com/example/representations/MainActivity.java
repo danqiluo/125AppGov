@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
                         "2178888888",
                         "Treasurer",
                         "d",
-                        R.drawable.macbook));
+                        "county",
+                        "https://thumbs-prod.si-cdn.com/c3phl1TZgQ92bLQugItmtovLZhs=/fit-in/1600x0/https://public-media.si-cdn.com/filer/54/10/5410da58-2295-4e3a-a847-fecd41cdcdd9/scarlet_tanager.jpg"));
 
         PeopleList.add(
                 new Official(
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
                         "2178855588",
                         "Senator",
                         "r",
-                        R.drawable.surface));
+                        "state",
+                        "https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/04/10/19/pinyon-jay-bird.jpg?w968h681"));
         adapter = new RepreAdapter(PeopleList, this);
 
         /**
