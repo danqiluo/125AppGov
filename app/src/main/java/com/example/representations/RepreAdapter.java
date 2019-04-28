@@ -16,8 +16,8 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
     private List<Official> listRepre;
     private Context context;
 
-    public RepreAdapter(List<Official> listRepre, Context context) {
-        this.listRepre = listRepre;
+    public RepreAdapter(List<Official> list, Context context) {
+        this.listRepre = list;
         this.context = context;
     }
 
@@ -31,7 +31,7 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profile = new Intent(context, RepProfile.class);
+                Intent profile = new Intent(v.getContext(), RepProfile.class);
                 profile.putExtra("official", listRepre.get(i));
                 System.out.println(listRepre.get(i).getName());
                 context.startActivity(profile);
