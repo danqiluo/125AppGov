@@ -11,8 +11,8 @@ import com.google.gson.JsonParser;
 import java.util.ArrayList;
 
 public class CivicJSON {
-    CivicInfoRequest civicInfoRequest = new CivicInfoRequest() {
-    }
+    CivicInfoRequest civicInfoRequest;
+
     public static ArrayList<Official> getOfficials(final String json) {
         if (json != null) {
             JsonParser parser = new JsonParser();

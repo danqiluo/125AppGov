@@ -18,7 +18,6 @@ import java.util.List;
 public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> {
     private List<Official> listRepre;
     private Context context;
-    int count;
 
     public RepreAdapter(List<Official> list, Context context) {
         this.listRepre = list;
@@ -49,17 +48,7 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         viewHolder.name.setText(repre.getName());
         viewHolder.email.setText(repre.getEmail());
         viewHolder.phoneNumber.setText(repre.getPhoneNumber());
-        if (repre.getImageURL() != null) {
-            viewHolder.photo.setImageDrawable(LoadImageFromWebOperations(repre.getImageURL()));
-        } else {
-            if (repre.getParty().equals("d")) {
-                viewHolder.photo.setImageDrawable(context.getResources().getDrawable(R.drawable.surface));
-            } else if (repre.getParty().equals("r")) {
-                viewHolder.photo.setImageDrawable(context.getResources().getDrawable(R.drawable.macbook));
-            } else {
-                viewHolder.photo.setImageDrawable(context.getResources().getDrawable(R.drawable.surface));
-            }
-        }
+        viewHolder.photo.setImageDrawable(repre.getDrawable(context));
         if (repre.getParty().equals("d")) {
             viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.democrat));
         } else if (repre.getParty().equals("r")) {
@@ -78,19 +67,6 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return listRepre.size();
-    }
-
-    public static Drawable LoadImageFromWebOperations(String url) {
-        System.out.println("LOAD IMAGE IS CALLED.");
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            System.out.println("InputStream???");
-            Drawable d = Drawable.createFromStream(is, null);
-            return d;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

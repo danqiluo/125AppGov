@@ -1,7 +1,13 @@
 package com.example.representations;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.io.InputStream;
+import java.net.URL;
 
 public class Official implements Parcelable {
     private String name;
@@ -22,6 +28,37 @@ public class Official implements Parcelable {
         this.imageURL = url;
     }
 
+    public Drawable getDrawable(Context context) {
+        if (imageURL != null) {
+            try {
+                Drawable d = new getPhoto().execute(imageURL).get();
+                return d;
+            } catch (Exception e) {
+            }
+        }
+        if (party.equals("d")) {
+                return context.getResources().getDrawable(R.drawable.surface);
+        } else if (party.equals("r")) {
+            return context.getResources().getDrawable(R.drawable.macbook);
+        }
+        return context.getResources().getDrawable(R.drawable.surface);
+    }
+
+    class getPhoto extends AsyncTask<String, Void, Drawable> {
+
+        protected Drawable doInBackground(String... url) {
+            try {
+                InputStream is = (InputStream) new URL(url[0]).getContent();
+                System.out.println("InputStream???");
+                Drawable d = Drawable.createFromStream(is, null);
+                is.close();
+                return d;
+            } catch (Exception e) {
+                return null;
+            }
+        }
+    }
+
     private Official(Parcel in) {
         this.name = in.readString();
         this.email = in.readString();
@@ -29,6 +66,7 @@ public class Official implements Parcelable {
         this.title = in.readString();
         this.party = in.readString();
         this.level = in.readString();
+        this.imageURL = in.readString();
     }
 
     public static final Parcelable.Creator<Official> CREATOR = new Parcelable.Creator<Official>(){
@@ -77,4 +115,8 @@ public class Official implements Parcelable {
     public String getParty() { return party; }
 
     public String getTitle() { return title; }
+
+    public String getLevel() {
+        return level;
+    }
 }

@@ -33,17 +33,7 @@ public class RepProfile extends AppCompatActivity {
         official = intent.getParcelableExtra("official");
 
         ImageView picture = findViewById(R.id.propic);
-        if (official.getImageURL() != null) {
-            picture.setImageDrawable(RepreAdapter.LoadImageFromWebOperations(official.getImageURL()));
-        } else {
-            if (official.getParty().equals("d")) {
-                picture.setImageDrawable(context.getResources().getDrawable(R.drawable.surface));
-            } else if (official.getParty().equals("r")) {
-                picture.setImageDrawable(context.getResources().getDrawable(R.drawable.macbook));
-            } else {
-                picture.setImageDrawable(context.getResources().getDrawable(R.drawable.surface));
-            }
-        }
+        picture.setImageDrawable(official.getDrawable(context));
         TextView name = findViewById(R.id.info);
         name.setText(official.getTitle() + " " + official.getName());
         if (official.getParty().equals("d")) {
