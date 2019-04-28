@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -26,8 +28,13 @@ public class SearchActivity extends AppCompatActivity {
         Button next = (Button) findViewById(R.id.Get_Location);
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                startActivity(intent);
+                try {
+                    Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast error = Toast.makeText(getApplicationContext(), "Invalid Location", Toast.LENGTH_LONG);
+                    error.show();
+                }
             }
         });
 
