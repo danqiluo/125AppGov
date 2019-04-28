@@ -39,12 +39,13 @@ public class RepProfile extends AppCompatActivity {
         (findViewById(R.id.email_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                // The intent does not have a URI, so declare the "text/plain" MIME type
-                emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {official.getEmail()}); // recipients
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[YOUR ISSUE]");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear " + official.getName() +" ,");
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {official.getEmail()});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "[subject]");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 

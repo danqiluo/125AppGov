@@ -23,14 +23,25 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int i) {
+        System.out.println(i);
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.people, viewGroup, false);
+        System.out.println(listRepre.get(i).getName());
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(context, RepProfile.class);
+                profile.putExtra("official", listRepre.get(i));
+                System.out.println(listRepre.get(i).getName());
+                context.startActivity(profile);
+            }
+        });
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Official repre = listRepre.get(i);
         viewHolder.title.setText(repre.getTitle());
         viewHolder.name.setText(repre.getName());
@@ -42,14 +53,6 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         } else if (repre.getParty().equals("r")) {
             viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.republican));
         }
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profile = new Intent(context, RepProfile.class);
-                profile.putExtra("official", listRepre.get(i));
-                context.startActivity(profile);
-            }
-        });
     }
 
     @Override
@@ -63,13 +66,14 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         public TextView phoneNumber;
         public ImageView photo;
         public TextView title;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
-            name = (TextView) itemView.findViewById(R.id.people_name);
-            email = (TextView) itemView.findViewById(R.id.people_email);
-            phoneNumber = (TextView) itemView.findViewById(R.id.people_phonenumber);
-            photo = (ImageView) itemView.findViewById(R.id.people_photo);
+            title = itemView.findViewById(R.id.title);
+            name = itemView.findViewById(R.id.people_name);
+            email = itemView.findViewById(R.id.people_email);
+            phoneNumber = itemView.findViewById(R.id.people_phonenumber);
+            photo = itemView.findViewById(R.id.people_photo);
         }
     }
 }

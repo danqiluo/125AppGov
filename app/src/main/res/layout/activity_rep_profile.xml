@@ -10,35 +10,60 @@
         android:id="@+id/propic"
         android:layout_width="263dp"
         android:layout_height="264dp"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/info"
         android:layout_width="376dp"
         android:layout_height="85dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="INFORMATION"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="323dp" />
+        app:layout_constraintBottom_toTopOf="@+id/email_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/email_button"
         android:layout_width="409dp"
         android:layout_height="147dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@color/republican"
         android:text="EMAIL"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="437dp" />
+        app:layout_constraintBottom_toTopOf="@+id/phone_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/phone_button"
         android:layout_width="409dp"
         android:layout_height="147dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
         android:background="@color/democrat"
         android:text="PHONE"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="584dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
