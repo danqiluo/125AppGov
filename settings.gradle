@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':mylibrary', ':google-api-services-civicinfo-v2-rev36-1.25.0'

@@ -16,7 +16,7 @@
         </meta-data>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/Your_API_KEY">
+            android:value="AIzaSyAejqWiMGD2gpvzDJJwtaiy3QjgCjQoNsQ">
         </meta-data>
 
         <activity android:name=".SearchActivity">

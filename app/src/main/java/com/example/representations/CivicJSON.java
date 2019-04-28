@@ -1,5 +1,7 @@
 package com.example.representations;
 
+import com.google.api.services.civicinfo.CivicInfo;
+import com.google.api.services.civicinfo.CivicInfoRequest;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -9,7 +11,8 @@ import com.google.gson.JsonParser;
 import java.util.ArrayList;
 
 public class CivicJSON {
-
+    CivicInfoRequest civicInfoRequest = new CivicInfoRequest() {
+    }
     public static ArrayList<Official> getOfficials(final String json) {
         if (json != null) {
             JsonParser parser = new JsonParser();
