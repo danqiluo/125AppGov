@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -50,7 +51,11 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.search_repre);
         Button next = findViewById(R.id.Get_Location);
         final EditText inputLocation = findViewById(R.id.textView3);
-        String[] input = inputLocation.getText().toString().split(" ");
+        String[] copy = inputLocation.getText().toString().split(" ");
+        for (String c : copy) {
+            c.replaceAll(",", "");
+        }
+        final String[] input = copy;
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
@@ -62,8 +67,12 @@ public class SearchActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String[] input = inputLocation.getText().toString().split(" ");
+                for (String c : input) {
+                    c.replaceAll(",", "");
+                }
                 GetJson process = new GetJson();
-                process.execute();
+                process.execute(input);
                 System.out.println("2");
                 TextView textView = findViewById(R.id.text);
                 try {
@@ -73,7 +82,8 @@ public class SearchActivity extends AppCompatActivity {
                     intent.putExtra("json", data);
                     startActivity(intent);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid address", Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });
