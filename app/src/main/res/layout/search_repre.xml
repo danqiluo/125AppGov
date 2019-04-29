@@ -49,7 +49,7 @@
 
         android:layout_marginLeft="87dp"
         android:layout_marginBottom="261dp"
-        android:text="enter your address"
+        android:hint="enter your address"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
