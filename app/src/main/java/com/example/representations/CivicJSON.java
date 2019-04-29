@@ -24,33 +24,32 @@ public class CivicJSON {
             ArrayList<Official> list = new ArrayList<>();
             for (JsonElement office : offices) {
                 JsonObject o = office.getAsJsonObject();
-                System.out.println(o.toString());
                 String title = o.get("name").getAsString();
                 String level = null;
                 if (o.get("levels") != null) {
-                    o.get("levels").getAsString();
+                    level = o.get("levels").getAsString();
                 }
                 JsonArray arr = o.getAsJsonArray("officialIndices");
                 for (JsonElement index : arr) {
                     int i = index.getAsInt();
-                    System.out.println("we're here... 3");
                     JsonObject official = officials.get(i).getAsJsonObject();
+                    System.out.println(official.toString());
                     String name = official.get("name").getAsString();
                     String party = null;
                     if (official.get("party") != null) {
-                            party = official.get("party").getAsString();
+                        party = official.get("party").getAsString();
                     }
                     String phone = null;
                     if (official.get("phones") != null) {
-                        official.get("phones").getAsJsonArray().get(0).getAsString();
+                        phone = official.get("phones").getAsJsonArray().get(0).getAsString();
                     }
                     String email = null;
                     if (official.get("emails") != null) {
-                        official.get("emails").getAsJsonArray().get(0).getAsString();
+                        email = official.get("emails").getAsJsonArray().get(0).getAsString();
                     }
                     String image = null;
                     if (official.get("photoUrl") != null) {
-                        official.get("photoUrl").getAsString();
+                        image = official.get("photoUrl").getAsString();
                     }
                     Official person = new Official(name, email, phone, title, party, level, image);
                     list.add(person);

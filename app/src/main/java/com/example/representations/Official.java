@@ -26,20 +26,26 @@ public class Official implements Parcelable {
         this.party = party;
         this.level = level;
         this.imageURL = url;
+        System.out.println(this.toString());
     }
 
+    public String toString() {
+        return "[" + name + ", " + email + ", " + phoneNumber + ", " + title + ", " + party + ", " + level + ", " + imageURL + "]";
+    }
     public Drawable getDrawable(Context context) {
         if (imageURL != null) {
             try {
                 Drawable d = new getPhoto().execute(imageURL).get();
-                return d;
+                if (d != null) {
+                    return d;
+                }
             } catch (Exception e) {
             }
         }
         if (party != null) {
-            if (party.equals("Democrat")) {
+            if (party.equals("Democratic Party")) {
                 return context.getResources().getDrawable(R.drawable.surface);
-            } else if (party.equals("Republican")) {
+            } else if (party.equals("Republican Party")) {
                 return context.getResources().getDrawable(R.drawable.macbook);
             }
         }
