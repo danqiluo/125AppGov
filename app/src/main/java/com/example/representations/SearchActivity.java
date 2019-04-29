@@ -49,6 +49,13 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_repre);
         Button next = findViewById(R.id.Get_Location);
+        Button getbill = findViewById(R.id.get_bill);
+        getbill.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchActivity.this, BillRecycler.class);
+                startActivity(intent);
+            }
+        });
         final EditText inputLocation = findViewById(R.id.textView3);
         String[] copy = inputLocation.getText().toString().split(" ");
         for (String c : copy) {
@@ -86,43 +93,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
             }
         });
-        /**
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY Bill api key
-        //AIzaSyA1pusB6RwqzjSwPubteMCnfP-pfjQ6Ea0  Civic api key
-        String url = "http://myjson.com/8la30";
-        String url2 = "https://api.propublica.org/congress/v1/members/L000287/bills/introduced.json";
-        final TextView textView = (TextView) findViewById(R.id.text);
-        //
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        textView.setText(response.substring(0, 500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                textView.setText("no");
-            }
-        });
-        requestQueue.add(stringRequest);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url2,
-                null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                textView.setText(response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                textView.setText("nope");
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
-
-        */
     }
 
     public static String getData() { return data; };

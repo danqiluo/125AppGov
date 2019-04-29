@@ -1,27 +1,37 @@
 package com.example.representations;
 
 public class Bill {
-    private String BillID;
-    private String BillNumber;
-    private String BillUri;
-    private String shortTitle;
+    private String billID;
+    private String party;
+    private String topic;
+    private String active;
     private String sponsorName;
 
-    public Bill(String billID, String billNumber, String billUri, String shortTitle, String sponsorName) {
-        BillID = billID;
-        BillNumber = billNumber;
-        BillUri = billUri;
-        this.shortTitle = shortTitle;
+    public Bill(String billID, String party, String topic, String active, String sponsorName) {
+        this.billID = billID;
+        this.party = party;
+        this.topic = topic;
+        this.active = active;
         this.sponsorName = sponsorName;
     }
 
-    public String getBillID() { return BillID; }
+    public String getBillID() {
+        return billID;
+    }
 
-    public String getBillNumber() { return BillNumber; }
+    public String getParty() {
+        return party;
+    }
 
-    public String getBillUri() { return BillUri; }
+    public String getTopic() {
+        return topic;
+    }
 
-    public String getShortTitle() { return shortTitle; }
+    public String getActive() {
+        return active;
+    }
 
-    public String getSponsorName() { return sponsorName; }
+    public String getSponsorName() {
+        return sponsorName;
+    }
 }
