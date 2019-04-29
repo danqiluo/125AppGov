@@ -41,29 +41,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
-    static String data;
-    static String input;
+
+    private static String data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_repre);
-        Button next = (Button) findViewById(R.id.Get_Location);
-        final EditText inputLocation = (EditText) findViewById(R.id.textView3);
-        input = inputLocation.getText().toString();
+        Button next = findViewById(R.id.Get_Location);
+        final EditText inputLocation = findViewById(R.id.textView3);
+        String[] input = inputLocation.getText().toString().split(" ");
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-        Button submit = (Button) findViewById(R.id.submit);
+        System.out.println("1");
+        Button submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GetJson process = new GetJson();
                 process.execute();
-                TextView textView = (TextView) findViewById(R.id.text);
-                textView.setText(data);
+                System.out.println("2");
+                TextView textView = findViewById(R.id.text);
+                try {
+                    data = process.get();
+                    textView.setText(data);
+                    Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                    intent.putExtra("json", data);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         /**
@@ -104,5 +115,7 @@ public class SearchActivity extends AppCompatActivity {
 
         */
     }
+
+    public static String getData() { return data; };
 }
 

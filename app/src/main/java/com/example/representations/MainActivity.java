@@ -16,19 +16,25 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RepreAdapter adapter;
 
-    List<Official> PeopleList = CivicJSON.getOfficials(SearchActivity.data);
+    List<Official> PeopleList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         configureBackButton();
         PeopleList = new ArrayList<>();
+        System.out.println("FUCK");
+
+        Intent intent = getIntent();
+        PeopleList = new ArrayList<>();
+        PeopleList = CivicJSON.getOfficials(intent.getStringExtra("json"));
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        System.out.println("FUCK2");
         PeopleList.add(
                 new Official(
                         "John Saltman",
@@ -50,21 +56,13 @@ public class MainActivity extends AppCompatActivity {
                         "https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/04/10/19/pinyon-jay-bird.jpg?w968h681"));
         adapter = new RepreAdapter(PeopleList, this);
 
-        /**
-         * this is work in progress code.
-        for (Representatives rep: PeopleList) {
-            recyclerView.addOnItemTouchListener();
-            setContentView(R.layout.rep_profile);
-            ((ImageView) findViewById(R.id.propic)).setImageDrawable(rep.getImage());
-        }
-         **/
         //PeopleList = CivicJSON.getOfficials(SearchActivity.data);
         adapter = new RepreAdapter(PeopleList, this);
         recyclerView.setAdapter(adapter);
 
     }
     private void configureBackButton() {
-        Button backButton = (Button) findViewById(R.id.go_back);
+        Button backButton = findViewById(R.id.go_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 finish();

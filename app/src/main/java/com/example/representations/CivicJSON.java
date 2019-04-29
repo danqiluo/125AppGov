@@ -1,5 +1,7 @@
 package com.example.representations;
 
+import android.util.JsonReader;
+
 import com.google.api.services.civicinfo.CivicInfo;
 import com.google.api.services.civicinfo.CivicInfoRequest;
 import com.google.gson.JsonArray;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 public class CivicJSON {
 
     public static ArrayList<Official> getOfficials(final String json) {
+        System.out.println("we're here...");
         if (json != null) {
             JsonParser parser = new JsonParser();
             JsonObject result = parser.parse(json).getAsJsonObject();
@@ -21,28 +24,33 @@ public class CivicJSON {
             ArrayList<Official> list = new ArrayList<>();
             for (JsonElement office : offices) {
                 JsonObject o = office.getAsJsonObject();
+                System.out.println(o.toString());
                 String title = o.get("name").getAsString();
-                String level = o.get("level").getAsString();
+                String level = null;
+                if (o.get("levels") != null) {
+                    o.get("levels").getAsString();
+                }
                 JsonArray arr = o.getAsJsonArray("officialIndices");
                 for (JsonElement index : arr) {
                     int i = index.getAsInt();
+                    System.out.println("we're here... 3");
                     JsonObject official = officials.get(i).getAsJsonObject();
                     String name = official.get("name").getAsString();
                     String party = null;
                     if (official.get("party") != null) {
-                        party = official.get("party").getAsString();
+                            party = official.get("party").getAsString();
                     }
                     String phone = null;
                     if (official.get("phones") != null) {
-                        phone = official.get("phones").getAsJsonArray().get(0).getAsString();
+                        official.get("phones").getAsJsonArray().get(0).getAsString();
                     }
                     String email = null;
                     if (official.get("emails") != null) {
-                        email = official.get("emails").getAsJsonArray().get(0).getAsString();
+                        official.get("emails").getAsJsonArray().get(0).getAsString();
                     }
                     String image = null;
                     if (official.get("photoUrl") != null) {
-                        image = official.get("photoUrl").getAsString();
+                        official.get("photoUrl").getAsString();
                     }
                     Official person = new Official(name, email, phone, title, party, level, image);
                     list.add(person);
