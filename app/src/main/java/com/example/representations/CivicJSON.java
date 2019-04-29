@@ -33,7 +33,6 @@ public class CivicJSON {
                 for (JsonElement index : arr) {
                     int i = index.getAsInt();
                     JsonObject official = officials.get(i).getAsJsonObject();
-                    System.out.println(official.toString());
                     String name = official.get("name").getAsString();
                     String party = null;
                     if (official.get("party") != null) {

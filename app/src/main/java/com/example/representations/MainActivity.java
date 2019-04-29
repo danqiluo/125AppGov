@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         configureBackButton();
         PeopleList = new ArrayList<>();
-        System.out.println("FUCK");
 
         Intent intent = getIntent();
         PeopleList = new ArrayList<>();
@@ -34,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        System.out.println("FUCK2");
-        PeopleList.add(
+        /**PeopleList.add(
                 new Official(
                         "John Saltman",
                         "something@gmail.com",
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         "Senator",
                         "r",
                         "state",
-                        "https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/04/10/19/pinyon-jay-bird.jpg?w968h681"));
+                        "https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/04/10/19/pinyon-jay-bird.jpg?w968h681"));**/
         adapter = new RepreAdapter(PeopleList, this);
 
         //PeopleList = CivicJSON.getOfficials(SearchActivity.data);

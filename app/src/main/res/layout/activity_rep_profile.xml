@@ -8,14 +8,16 @@
 
     <ImageView
         android:id="@+id/propic"
-        android:layout_width="263dp"
+        android:layout_width="wrap_content"
         android:layout_height="264dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toTopOf="@+id/info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +32,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
+        android:layout_marginBottom="12dp"
+        android:gravity="center|center_horizontal|center_vertical"
         android:text="INFORMATION"
         app:layout_constraintBottom_toTopOf="@+id/email_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
