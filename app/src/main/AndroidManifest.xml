@@ -10,15 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="com.google.android.gms.vision"
-            android:value="@integer/google_play_services_version">
-        </meta-data>
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAejqWiMGD2gpvzDJJwtaiy3QjgCjQoNsQ">
-        </meta-data>
-
         <activity android:name=".SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
