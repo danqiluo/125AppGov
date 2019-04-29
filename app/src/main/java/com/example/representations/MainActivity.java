@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 new Official(
                         "Sarah Pepper",
                         "somethingthig@gmail.com",
-                        "2178855588",
+                        null,
                         "Senator",
                         "r",
                         "state",

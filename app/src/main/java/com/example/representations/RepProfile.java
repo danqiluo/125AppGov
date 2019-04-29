@@ -41,26 +41,41 @@ public class RepProfile extends AppCompatActivity {
         } else if (official.getParty().equals("r")) {
             name.setTextColor(context.getResources().getColor(R.color.republican));
         }
-        (findViewById(R.id.email_button)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {official.getEmail()});
-                intent.putExtra(Intent.EXTRA_SUBJECT, "[subject]");
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
+        if (official.getEmail() != null) {
+            (findViewById(R.id.email_button)).setEnabled(true);
+            (findViewById(R.id.email_button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                    intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{official.getEmail()});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "[subject]");
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            Button email = findViewById(R.id.email_button);
+            email.setEnabled(false);
+            email.setBackgroundColor(context.getResources().getColor(R.color.lightGray));
+        }
 
-        (findViewById(R.id.phone_button)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri number = Uri.parse("tel:" + official.getPhoneNumber());
-                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-                startActivity(callIntent);
-            }
-        });
+        if (official.getPhoneNumber() != null) {
+            (findViewById(R.id.phone_button)).setEnabled(true);
+            (findViewById(R.id.phone_button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri number = Uri.parse("tel:" + official.getPhoneNumber());
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+                    startActivity(callIntent);
+                }
+            });
+        } else {
+            Button phone = findViewById(R.id.phone_button);
+            phone.setEnabled(false);
+            phone.setBackgroundColor(context.getResources().getColor(R.color.lightGray));
+
+        }
     }
 }
