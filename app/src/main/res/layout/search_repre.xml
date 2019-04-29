@@ -50,6 +50,8 @@
         android:layout_marginLeft="87dp"
         android:layout_marginBottom="261dp"
         android:hint="enter your address"
+        android:inputType="text"
+        android:text="IL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -22,9 +22,9 @@ public class GetJson extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try {
-            String inputurl = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyA1pusB6RwqzjSwPubteMCnfP-pfjQ6Ea0&address=%20%20City%20" + SearchActivity.input + "&electionId=2000";
+            String inputurl = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyA1pusB6RwqzjSwPubteMCnfP-pfjQ6Ea0&address=%20%20City%20" + "IL" + "&electionId=2000";
             URL url = new URL(inputurl);
-
+            //IL part can be replaced by SearchActivity.input But sth wrong with that
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,8 +48,8 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_repre);
         Button next = (Button) findViewById(R.id.Get_Location);
-        EditText inputLocation = (EditText) findViewById(R.id.textView3);
-        input = inputLocation.getText().toString();
+        final EditText inputLocation = (EditText) findViewById(R.id.textView3);
+
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
@@ -64,6 +65,8 @@ public class SearchActivity extends AppCompatActivity {
                 TextView textView = (TextView) findViewById(R.id.text);
                 textView.setText(data);
                 textView.setVisibility(View.VISIBLE);
+                Log.v("EditText value=", inputLocation.getText().toString());
+                input = inputLocation.getText().toString();
             }
         });
         /**
