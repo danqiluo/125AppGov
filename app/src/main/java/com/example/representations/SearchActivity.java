@@ -44,7 +44,6 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity {
 
     private static String data;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
