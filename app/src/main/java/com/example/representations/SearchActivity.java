@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.search_repre);
         Button next = (Button) findViewById(R.id.Get_Location);
         final EditText inputLocation = (EditText) findViewById(R.id.textView3);
-
+        input = inputLocation.getText().toString();
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
@@ -64,9 +64,6 @@ public class SearchActivity extends AppCompatActivity {
                 process.execute();
                 TextView textView = (TextView) findViewById(R.id.text);
                 textView.setText(data);
-                textView.setVisibility(View.VISIBLE);
-                Log.v("EditText value=", inputLocation.getText().toString());
-                input = inputLocation.getText().toString();
             }
         });
         /**

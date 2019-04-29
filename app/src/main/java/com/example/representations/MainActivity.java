@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RepreAdapter adapter;
 
-    List<Official> PeopleList;
+    List<Official> PeopleList = CivicJSON.getOfficials(SearchActivity.data);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         PeopleList.add(
                 new Official(
                         "John Saltman",
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
             ((ImageView) findViewById(R.id.propic)).setImageDrawable(rep.getImage());
         }
          **/
-
+        //PeopleList = CivicJSON.getOfficials(SearchActivity.data);
+        adapter = new RepreAdapter(PeopleList, this);
         recyclerView.setAdapter(adapter);
 
     }
