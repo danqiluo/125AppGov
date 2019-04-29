@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_repre);
-        Button next = findViewById(R.id.Get_Location);
+
         Button getbill = findViewById(R.id.get_bill);
         getbill.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -62,6 +62,7 @@ public class SearchActivity extends AppCompatActivity {
             c.replaceAll(",", "");
         }
         final String[] input = copy;
+        Button next = findViewById(R.id.Get_Location);
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
@@ -77,7 +78,12 @@ public class SearchActivity extends AppCompatActivity {
                 for (String c : input) {
                     c.replaceAll(",", "");
                 }
-                GetJson process = new GetJson();
+                GetJson process = null;
+                try {
+                    process = new GetJson();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 process.execute(input);
                 System.out.println("2");
                 TextView textView = findViewById(R.id.text);

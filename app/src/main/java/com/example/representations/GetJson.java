@@ -1,9 +1,11 @@
 package com.example.representations;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +23,9 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class GetJson extends AsyncTask<String, Void, String> {
     String data = "";
+
+    public GetJson() throws IOException {
+    }
 
     protected String doInBackground(String... strings) {
         HttpsURLConnection con;
@@ -49,10 +54,45 @@ public class GetJson extends AsyncTask<String, Void, String> {
     protected String getData() {
         return data;
     }
+    protected static URL createUrl(String url) {
+        URL billurl = null;
+        try {
+            billurl = new URL(url);
+            HttpURLConnection urlConnection = (HttpURLConnection) billurl.openConnection();
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        } catch (IOException q) {
+            q.printStackTrace();
+        }
+        return billurl;
+    }
+    protected static String makeHttpRequest(URL url) throws IOException {
+        String response = "";
+        if (url == null) {
+            return response;
+        }
+        HttpURLConnection urlConnection = null;
+        InputStream inputStream = null;
+        try{
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty ("Authorization", "ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY");
+            urlConnection.connect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+        System.out.println(response);
+        return response;
+    }
+    String response = makeHttpRequest(createUrl("https://api.propublica.org/congress/v1/{congress}/{chamber}/bills/{type}.json"));
 
-    /**@Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-        SearchActivity.data = this.data;
-    }**/
 }

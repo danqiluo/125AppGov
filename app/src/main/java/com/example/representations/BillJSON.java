@@ -25,6 +25,10 @@ public class BillJSON {
                 if (b.get("bill_id") != null) {
                     id = b.get("bill_id").getAsString();
                 }
+                String title = null;
+                if (b.get("title") != null) {
+                    title = b.get("title").getAsString();
+                }
                 String party = null;
                 if (b.get("bill_type") != null) {
                     party = b.get("bill_type").getAsString();
@@ -41,8 +45,14 @@ public class BillJSON {
                 if (b.get("sponsor_name") != null) {
                     sponsorName = b.get("sponsor_name").getAsString();
                 }
+                /**
+                String detail = null;
+                if (b.get("sponsor_state") != null
+                    && b.get("introduced_date") != null) {
+                    detail = b.get("sponsor_state").getAsString() + b.get("introduced_date").getAsString();
+                }*/
                 ArrayList<Bill> list = new ArrayList<>();
-                Bill newbill = new Bill(id, party, topic, active, sponsorName);
+                Bill newbill = new Bill(id, title, party, topic, active, sponsorName);
                 list.add(newbill);
             }
 

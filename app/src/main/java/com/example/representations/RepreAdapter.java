@@ -50,9 +50,9 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         viewHolder.phoneNumber.setText(repre.getPhoneNumber());
         viewHolder.photo.setImageDrawable(repre.getDrawable(context));
         if (repre.getParty() != null) {
-            if (repre.getParty().equals("Democratic Party")) {
+            if (repre.getParty().equals("Democratic")) {
                 viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.democrat));
-            } else if (repre.getParty().equals("Republican Party")) {
+            } else if (repre.getParty().equals("Republican")) {
                 viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.republican));
             }
         }

@@ -2,6 +2,8 @@ package com.example.representations;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -10,6 +12,11 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    @Test
+    public void testsomething() throws IOException {
+        String response = GetJson.makeHttpRequest(GetJson.createUrl("https://api.propublica.org/congress/v1/bills/search.json?query=megahertz"));
+
+    }
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
