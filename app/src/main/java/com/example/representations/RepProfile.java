@@ -36,9 +36,9 @@ public class RepProfile extends AppCompatActivity {
         picture.setImageDrawable(official.getDrawable(context));
         TextView name = findViewById(R.id.info);
         name.setText(official.getTitle() + "\n" + official.getName());
-        if (official.getParty().equals("Democratic")) {
+        if (official.getParty().equals("Democratic Party")) {
             name.setTextColor(context.getResources().getColor(R.color.democrat));
-        } else if (official.getParty().equals("Republican")) {
+        } else if (official.getParty().equals("Republican Party")) {
             name.setTextColor(context.getResources().getColor(R.color.republican));
         }
         if (official.getEmail() != null) {

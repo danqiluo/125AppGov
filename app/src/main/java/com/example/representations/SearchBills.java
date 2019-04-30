@@ -17,7 +17,6 @@ public class SearchBills extends AppCompatActivity {
         setContentView(R.layout.activity_search_bills);
 
         Button recent = findViewById(R.id.recent);
-        /**
         recent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,22 +30,27 @@ public class SearchBills extends AppCompatActivity {
                 } catch (Exception e) {
                 }
             }
-        }); */
+        });
 
         Button search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = ((EditText)findViewById(R.id.search_bar)).getText().toString();
-                String[] input = {"search", text};
-                GetJson process = new GetJson();
-                process.execute(input);
-                try {
-                    data = process.get();
-                    Intent intent = new Intent(SearchBills.this, BillRecycler.class);
-                    intent.putExtra("json", data);
-                    startActivity(intent);
-                } catch (Exception e) {
+                if (text.length() > 0) {
+                    String[] input = {"search", text};
+                    GetJson process = new GetJson();
+                    process.execute(input);
+                    try {
+                        data = process.get();
+                        Intent intent = new Intent(SearchBills.this, BillRecycler.class);
+                        intent.putExtra("json", data);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                    }
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please enter text", Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });

@@ -12,19 +12,29 @@ public class Bill implements Parcelable {
     private String title;
     private String committees;
     private String summary;
+    private String shortTitle;
     private String url;
 
     public Bill(String billID, String title, String introduceDate, String topic, String active, String sponsorName,
-                String committees, String summary, String url) {
+                String committees, String summary, String shortTitle, String url) {
         this.billID = billID;
         this.introduceDate = introduceDate;
-        this.topic = topic;
-        this.active = active;
-        this.sponsorName = sponsorName;
         this.title = title;
+        this.shortTitle = shortTitle;
+        this.topic = topic;
+        if (active.equals("true")) {
+            this.active = "active";
+        } else {
+            this.active = "inactive";
+        }
+        this.sponsorName = sponsorName;
         this.committees = committees;
         this.summary = summary;
         this.url = url;
+    }
+
+    public String toString() {
+        return "[" + billID + ", " + introduceDate + ", " + topic + ", " + active + ", " + sponsorName + ", " + title + ", " + shortTitle + ", " + committees + ", " + summary  + ", " + url + "]";
     }
 
     protected Bill(Parcel in) {
@@ -34,6 +44,7 @@ public class Bill implements Parcelable {
         active = in.readString();
         sponsorName = in.readString();
         title = in.readString();
+        shortTitle = in.readString();
         summary = in.readString();
         url = in.readString();
         committees = in.readString();
@@ -75,6 +86,10 @@ public class Bill implements Parcelable {
         return title;
     }
 
+    public String getShortTitle() {
+        return shortTitle;
+    }
+
     public String getCommittees() {
         return committees;
     }
@@ -100,9 +115,10 @@ public class Bill implements Parcelable {
         dest.writeString(topic);
         dest.writeString(active);
         dest.writeString(sponsorName);
+        dest.writeString(title);
+        dest.writeString(shortTitle);
         dest.writeString(summary);
         dest.writeString(url);
         dest.writeString(committees);
-        dest.writeString(title);
     }
 }

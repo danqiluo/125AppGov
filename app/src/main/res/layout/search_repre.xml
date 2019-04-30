@@ -10,19 +10,23 @@
 
     <TextView
         android:id="@+id/Input"
-        android:layout_width="257dp"
-        android:layout_height="99dp"
+        android:layout_width="272dp"
+        android:layout_height="179dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="108dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Who are your elected officials and representatives?"
+        android:text="Who are your government officials?"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:textSize="24sp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/textView3"
@@ -41,6 +45,7 @@
 
     <Button
         android:id="@+id/submit"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="87dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
@@ -49,7 +54,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/colorPrimary"
-        android:text="submit"
+        android:text="SUBMIT"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="@color/cardview_light_background"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +63,7 @@
 
     <Button
         android:id="@+id/get_bill"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

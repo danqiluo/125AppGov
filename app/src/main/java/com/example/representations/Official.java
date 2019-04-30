@@ -26,7 +26,6 @@ public class Official implements Parcelable {
         this.party = party;
         this.level = level;
         this.imageURL = url;
-        System.out.println(this.toString());
     }
 
     public String toString() {
@@ -43,13 +42,13 @@ public class Official implements Parcelable {
             }
         }
         if (party != null) {
-            if (party.equals("Democratic")) {
-                return context.getResources().getDrawable(R.drawable.surface);
-            } else if (party.equals("Republican")) {
-                return context.getResources().getDrawable(R.drawable.macbook);
+            if (party.contains("Democrat")) {
+                return context.getResources().getDrawable(R.drawable.democrat);
+            } else if (party.contains("Republic")) {
+                return context.getResources().getDrawable(R.drawable.republican);
             }
         }
-        return context.getResources().getDrawable(R.drawable.surface);
+        return context.getResources().getDrawable(R.drawable.neutral);
     }
 
     class getPhoto extends AsyncTask<String, Void, Drawable> {

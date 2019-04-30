@@ -7,4 +7,6 @@
     <color name="democrat">#80B3FF</color>
     <color name="republican">#FF6666</color>
     <color name="lightGray">#BFBFBF</color>
+    <color name="BLACK">#000000</color>
+    <color name="WHITE">#ffffff</color>
 </resources>

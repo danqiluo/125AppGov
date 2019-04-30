@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,7 +30,7 @@ public class GetJson extends AsyncTask<String, Void, String> {
         String recent = "https://api.propublica.org/congress/v1/115/both/bills/introduced.json";
 
         try {
-            String inputurl = null;
+            String inputurl;
             if (strings[0].equals("civic")) {
                 inputurl = civic;
                 for (int i = 1; i < strings.length - 1; i++) {
@@ -53,15 +54,18 @@ public class GetJson extends AsyncTask<String, Void, String> {
             }
 
             con.connect();
-
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
+            StringBuilder sb;
+            try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+            } catch (FileNotFoundException e){
+                return null;
             }
-            br.close();
             return sb.toString();
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -19,6 +19,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -38,22 +43,26 @@ public class SearchActivity extends AppCompatActivity
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String in = "civic " + inputLocation.getText().toString();
-                String[] input = in.split(" ");
-                for (String c : input) {
-                    c.replaceAll(",", "");
+                if (isValidLocation(inputLocation.getText().toString())) {
+                    String in = "civic " + inputLocation.getText().toString();
+                    String[] input = in.split(" ");
+                    for (String c : input) {
+                        c.replaceAll(",", "");
+                    }
+                    GetJson process = new GetJson();
+                    process.execute(input);
+                    try {
+                        data = process.get();
+                        if (data != null) {
+                            Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                            intent.putExtra("json", data);
+                            startActivity(intent);
+                        }
+                    } catch (Exception e) {
+                    }
                 }
-                GetJson process = new GetJson();
-                process.execute(input);
-                try {
-                    data = process.get();
-                    Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                    intent.putExtra("json", data);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid address", Toast.LENGTH_LONG);
-                    toast.show();
-                }
+                Toast toast = Toast.makeText(getApplicationContext(), "Invalid address", Toast.LENGTH_LONG);
+                toast.show();
             }
         });
 
@@ -66,6 +75,13 @@ public class SearchActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    private boolean isValidLocation(String address) {
+        if (address.length() > 0) {
+            return true;
+        }
+        return false;
     }
 
 }

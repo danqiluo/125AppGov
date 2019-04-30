@@ -29,15 +29,6 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.people, viewGroup, false);
-        /**v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profile = new Intent(v.getContext(), RepProfile.class);
-                profile.putExtra("official", listRepre.get(count));
-                context.startActivity(profile);
-            }
-        });
-         **/
         return new ViewHolder(v);
     }
 
@@ -50,11 +41,15 @@ public class RepreAdapter extends RecyclerView.Adapter<RepreAdapter.ViewHolder> 
         viewHolder.phoneNumber.setText(repre.getPhoneNumber());
         viewHolder.photo.setImageDrawable(repre.getDrawable(context));
         if (repre.getParty() != null) {
-            if (repre.getParty().equals("Democratic")) {
+            if (repre.getParty().contains("Democrat")) {
                 viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.democrat));
-            } else if (repre.getParty().equals("Republican")) {
+            } else if (repre.getParty().contains("Republic")) {
                 viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.republican));
+            } else {
+                viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.lightGray));
             }
+        } else {
+            viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.lightGray));
         }
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

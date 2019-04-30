@@ -19,33 +19,20 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/bill_id"
+                android:id="@+id/short_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/bill_topic"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
-                android:text="BillID"
-                android:textColor="#000000"
-                />
-
-            <TextView
-                android:id="@+id/bill_topic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
-                android:text="Topic"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000"
-                app:fontFamily="sans-serif-light" />
+                android:text="Title"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/bill_id"
+                android:layout_below="@id/short_title"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
                 android:text="active"
