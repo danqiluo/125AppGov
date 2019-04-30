@@ -17,7 +17,7 @@ public class SearchBills extends AppCompatActivity {
         setContentView(R.layout.activity_search_bills);
 
         Button recent = findViewById(R.id.recent);
-
+        /**
         recent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +31,7 @@ public class SearchBills extends AppCompatActivity {
                 } catch (Exception e) {
                 }
             }
-        });
+        }); */
 
         Button search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {

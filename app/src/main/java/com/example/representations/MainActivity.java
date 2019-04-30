@@ -32,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Button getBill = findViewById(R.id.go_bill);
+        Button getBill = findViewById(R.id.get_bill);
+        /**
         getBill.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SearchBills.class);
                 startActivity(intent);
             }
-        });
+        }); */
 
         adapter = new RepreAdapter(PeopleList, this);
 

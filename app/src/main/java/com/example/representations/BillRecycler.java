@@ -20,15 +20,12 @@ public class BillRecycler extends AppCompatActivity {
 
         Intent intent = getIntent();
         BillList = new ArrayList<>();
-        //BillList = CivicJSON.getOfficials(intent.getStringExtra("json"));
-
+        //BillList = BillJSON.getBills(intent.getStringExtra("json"));
+        BillList.add(new Bill("hr2739-113","Efficient Use of Government Spectrum Act of 2013","2013-07-18","Science, Technology, Communications","false","Doris Matsui","House Armed Services Committee","sdfs","sdfsd"));
         recyclerView = findViewById(R.id.bill_recycler);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        BillList.add(
-         new Bill("hr3355-113", "something", "D", "Economics and Public Finance", "active", "Brett Guthrie"));
         adapter = new BillAdapter(BillList, this);
         recyclerView.setAdapter(adapter);
 

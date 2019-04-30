@@ -43,9 +43,9 @@ public class Official implements Parcelable {
             }
         }
         if (party != null) {
-            if (party.equals("Democratic Party")) {
+            if (party.equals("Democratic")) {
                 return context.getResources().getDrawable(R.drawable.surface);
-            } else if (party.equals("Republican Party")) {
+            } else if (party.equals("Republican")) {
                 return context.getResources().getDrawable(R.drawable.macbook);
             }
         }

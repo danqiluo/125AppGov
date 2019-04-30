@@ -42,18 +42,11 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         viewHolder.topic.setText(bill.getTopic());
         viewHolder.active.setText(bill.getActive());
         viewHolder.sponsorName.setText(bill.getSponsorName());
-        if (bill.getParty() != null) {
-            if (bill.getParty().equals("D")) {
-                viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.democrat));
-            } else if (bill.getParty().equals("R")) {
-                viewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.color.republican));
-            }
-        }
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profile = new Intent(v.getContext(), RepProfile.class);
-                profile.putExtra("bill", (Parcelable) listBill.get(i));
+                Intent profile = new Intent(v.getContext(), BillProfile.class);
+                profile.putExtra("bill", listBill.get(i));
                 context.startActivity(profile);
             }
         });

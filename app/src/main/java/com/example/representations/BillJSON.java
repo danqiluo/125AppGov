@@ -12,12 +12,7 @@ import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 
-public class BillJSON extends AsyncTask<String, Void, String> {
-    @Override
-    protected String doInBackground(String... strings) {
-        return null;
-    }
-
+public class BillJSON {
     public static ArrayList<Official> getBills(final String json) {
         if (json != null) {
             JsonParser parser = new JsonParser();
@@ -35,9 +30,21 @@ public class BillJSON extends AsyncTask<String, Void, String> {
                 if (b.get("title") != null) {
                     title = b.get("title").getAsString();
                 }
-                String party = null;
-                if (b.get("bill_type") != null) {
-                    party = b.get("bill_type").getAsString();
+                String date = null;
+                if (b.get("introduced_date") != null) {
+                    date = b.get("introduced_date").getAsString();
+                }
+                String committee = null;
+                if (b.get("committees") != null) {
+                    date = b.get("committees").getAsString();
+                }
+                String summmary = null;
+                if (b.get("summary") != null) {
+                    summmary = b.get("summary").getAsString();
+                }
+                String url = null;
+                if (b.get("url") != null) {
+                    url = b.get("url").getAsString();
                 }
                 String topic = null;
                 if (b.get("summary_subject") != null) {
@@ -51,14 +58,10 @@ public class BillJSON extends AsyncTask<String, Void, String> {
                 if (b.get("sponsor_name") != null) {
                     sponsorName = b.get("sponsor_name").getAsString();
                 }
-                /**
-                String detail = null;
-                if (b.get("sponsor_state") != null
-                    && b.get("introduced_date") != null) {
-                    detail = b.get("sponsor_state").getAsString() + b.get("introduced_date").getAsString();
-                }*/
+
                 ArrayList<Bill> list = new ArrayList<>();
-                Bill newbill = new Bill(id, title, party, topic, active, sponsorName);
+
+                Bill newbill = new Bill(id, title, date, topic, active, sponsorName, committee, summmary, url);
                 list.add(newbill);
             }
 

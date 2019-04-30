@@ -23,6 +23,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RepProfile" />
         <activity android:name=".BillRecycler" />
+        <activity android:name=".BillProfile" />
+
     </application>
 
 </manifest>
