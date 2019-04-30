@@ -35,8 +35,7 @@ public class GetJson extends AsyncTask<String, Void, String> {
             con = (HttpsURLConnection) u.openConnection();
 
             con.connect();
-
-
+            con.setRequestProperty("X-API-Key", "ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY");
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line;
@@ -54,6 +53,7 @@ public class GetJson extends AsyncTask<String, Void, String> {
     protected String getData() {
         return data;
     }
+    /**
     protected static URL createUrl(String url) {
         URL billurl = null;
         try {
@@ -75,8 +75,8 @@ public class GetJson extends AsyncTask<String, Void, String> {
         InputStream inputStream = null;
         try{
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setReadTimeout(10000 );
+            urlConnection.setConnectTimeout(15000 );
             urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty ("Authorization", "ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY");
             urlConnection.connect();
@@ -94,5 +94,5 @@ public class GetJson extends AsyncTask<String, Void, String> {
         return response;
     }
     String response = makeHttpRequest(createUrl("https://api.propublica.org/congress/v1/{congress}/{chamber}/bills/{type}.json"));
-
+*/
 }

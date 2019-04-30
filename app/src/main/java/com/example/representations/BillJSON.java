@@ -1,5 +1,7 @@
 package com.example.representations;
 
+import android.os.AsyncTask;
+
 import com.example.representations.Official;
 import com.google.api.services.civicinfo.CivicInfoRequest;
 import com.google.gson.JsonArray;
@@ -10,7 +12,11 @@ import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 
-public class BillJSON {
+public class BillJSON extends AsyncTask<String, Void, String> {
+    @Override
+    protected String doInBackground(String... strings) {
+        return null;
+    }
 
     public static ArrayList<Official> getBills(final String json) {
         if (json != null) {
