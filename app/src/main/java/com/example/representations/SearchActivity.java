@@ -43,12 +43,7 @@ public class SearchActivity extends AppCompatActivity
                 for (String c : input) {
                     c.replaceAll(",", "");
                 }
-                GetJson process = null;
-                try {
-                    process = new GetJson();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                GetJson process = new GetJson();
                 process.execute(input);
                 try {
                     data = process.get();
@@ -59,6 +54,15 @@ public class SearchActivity extends AppCompatActivity
                     Toast toast = Toast.makeText(getApplicationContext(), "Invalid address", Toast.LENGTH_LONG);
                     toast.show();
                 }
+            }
+        });
+
+        Button bills = findViewById(R.id.get_bill);
+        bills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchActivity.this, SearchBills.class);
+                startActivity(intent);
             }
         });
 
