@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        configureBackButton();
         PeopleList = new ArrayList<>();
 
         Intent intent = getIntent();
@@ -32,19 +31,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Button getBill = findViewById(R.id.go_bill);
+        getBill.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchBills.class);
+                startActivity(intent);
+            }
+        });
+
         adapter = new RepreAdapter(PeopleList, this);
 
         recyclerView.setAdapter(adapter);
 
     }
-    private void configureBackButton() {
-        Button backButton = findViewById(R.id.go_back);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
 
 }
-

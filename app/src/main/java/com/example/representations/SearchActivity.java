@@ -1,95 +1,57 @@
 package com.example.representations;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.api.client.http.HttpMethods;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.LowLevelHttpRequest;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.JsonGenerator;
-import com.google.api.client.json.JsonParser;
-import com.google.api.services.civicinfo.CivicInfo;
-import com.google.api.services.civicinfo.CivicInfoRequest;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import org.apache.http.protocol.HTTP;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.Writer;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity
+        implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static String data;
+    //private static String location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_repre);
-
-        Button getbill = findViewById(R.id.get_bill);
-        getbill.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(SearchActivity.this, BillRecycler.class);
-                startActivity(intent);
-            }
-        });
         final EditText inputLocation = findViewById(R.id.textView3);
-        String[] copy = inputLocation.getText().toString().split(" ");
-        for (String c : copy) {
-            c.replaceAll(",", "");
-        }
-        final String[] input = copy;
-        Button next = findViewById(R.id.Get_Location);
-        next.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        System.out.println("1");
+
         Button submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] input = inputLocation.getText().toString().split(" ");
+                String in = "civic " + inputLocation.getText().toString();
+                String[] input = in.split(" ");
                 for (String c : input) {
                     c.replaceAll(",", "");
                 }
                 GetJson process = null;
                 try {
                     process = new GetJson();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 process.execute(input);
-                System.out.println("2");
-                TextView textView = findViewById(R.id.text);
                 try {
                     data = process.get();
-                    textView.setText(data);
                     Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                     intent.putExtra("json", data);
                     startActivity(intent);
@@ -102,6 +64,4 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    public static String getData() { return data; };
 }
-

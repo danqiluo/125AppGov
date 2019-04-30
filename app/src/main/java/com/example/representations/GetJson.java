@@ -1,11 +1,9 @@
 package com.example.representations;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,18 +22,39 @@ import javax.net.ssl.HttpsURLConnection;
 public class GetJson extends AsyncTask<String, Void, String> {
     String data = "";
 
-    public GetJson() throws IOException {
-    }
-
     protected String doInBackground(String... strings) {
         HttpsURLConnection con;
+        String civic = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyA1pusB6RwqzjSwPubteMCnfP-pfjQ6Ea0&address=";
+        String search = "https://api.propublica.org/congress/v1/bills/search.json?query=";
+        String recent = "https://api.propublica.org/congress/v1/115/both/bills/introduced.json";
+
         try {
-            String inputurl = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyA1pusB6RwqzjSwPubteMCnfP-pfjQ6Ea0&address=1263%20Pacific%20Ave.%20Kansas%20City%20KS";
-            URL u = new URL(inputurl);
-            con = (HttpsURLConnection) u.openConnection();
+            String inputurl = null;
+            if (strings[0].equals("civic")) {
+                inputurl = civic;
+                for (int i = 1; i < strings.length - 1; i++) {
+                    inputurl = inputurl + strings[i] + "%20";
+                }
+                inputurl = inputurl + strings[strings.length - 1];
+                URL u = new URL(inputurl);
+                con = (HttpsURLConnection) u.openConnection();
+            } else if (strings[0].equals("recent")) {
+                inputurl = recent;
+                URL u = new URL(inputurl);
+                con = (HttpsURLConnection) u.openConnection();
+                con.setRequestProperty("X-API-Key", "ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY");
+            } else if (strings[0].equals("search")) {
+                inputurl = search + strings[1];
+                URL u = new URL(inputurl);
+                con = (HttpsURLConnection) u.openConnection();
+                con.setRequestProperty("X-API-Key", "ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY");
+            } else {
+                return null;
+            }
 
             con.connect();
-            con.setRequestProperty("X-API-Key", "ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY");
+
+
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line;
@@ -50,49 +69,4 @@ public class GetJson extends AsyncTask<String, Void, String> {
         return null;
     }
 
-    protected String getData() {
-        return data;
-    }
-    /**
-    protected static URL createUrl(String url) {
-        URL billurl = null;
-        try {
-            billurl = new URL(url);
-            HttpURLConnection urlConnection = (HttpURLConnection) billurl.openConnection();
-        } catch (MalformedURLException e){
-            e.printStackTrace();
-        } catch (IOException q) {
-            q.printStackTrace();
-        }
-        return billurl;
-    }
-    protected static String makeHttpRequest(URL url) throws IOException {
-        String response = "";
-        if (url == null) {
-            return response;
-        }
-        HttpURLConnection urlConnection = null;
-        InputStream inputStream = null;
-        try{
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 );
-            urlConnection.setConnectTimeout(15000 );
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setRequestProperty ("Authorization", "ExTLJ72PRRHGi61jD8GZ4p6zaazuJfyRujQ3snOY");
-            urlConnection.connect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (inputStream != null) {
-                inputStream.close();
-            }
-        }
-        System.out.println(response);
-        return response;
-    }
-    String response = makeHttpRequest(createUrl("https://api.propublica.org/congress/v1/{congress}/{chamber}/bills/{type}.json"));
-*/
 }
